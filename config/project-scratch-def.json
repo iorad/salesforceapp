@@ -1,5 +1,15 @@
 {
-  "orgName": "pujangga company",
+  "orgName": "Iorad Company",
   "edition": "Developer",
-  "features": []
+  "adminEmail": "info@iorad.com",
+  "hasSampleData": false,
+  "features": [
+    "Knowledge",
+    "API"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+        "enableS1DesktopEnabled": true
+    }
+  }
 }

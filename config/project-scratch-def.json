@@ -2,7 +2,7 @@
   "orgName": "Iorad Company",
   "edition": "Developer",
   "adminEmail": "info@iorad.com",
-  "hasSampleData": false,
+  "hasSampleData": true,
   "features": [
     "Knowledge",
     "API"

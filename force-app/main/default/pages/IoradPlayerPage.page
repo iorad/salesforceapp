@@ -1,0 +1,3 @@
+<apex:page Controller="IoradPlayerController" showHeader="false">
+  <apex:iframe src="{!player}" frameborder="false" scrolling="false" height="700px" width="100%" /> 
+</apex:page>

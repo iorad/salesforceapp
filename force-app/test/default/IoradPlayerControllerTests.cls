@@ -59,6 +59,6 @@ private class IoradPlayerControllerTests {
 
     @isTest static void testGetAppVersion() {
         IoradPlayerController demo = new IoradPlayerController();
-        System.assertEquals(demo.getAppVersion(), '1.0.0');
+        System.assertEquals(demo.getAppVersion(), IoradPlayerController.VERSION);
     }
 }

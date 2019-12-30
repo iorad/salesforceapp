@@ -1,5 +1,7 @@
 public with sharing class IoradPlayerController {
     
+    public static String VERSION = '1.0.0';
+
     public String player { get; set; }
     public SObject article { get; set; }
 
@@ -50,7 +52,7 @@ public with sharing class IoradPlayerController {
     }
 
     public String getAppVersion() {
-        return '1.0.0';
+        return IoradPlayerController.VERSION;
     }
 
     private Schema.DescribeSObjectResult getObjectTypeByKeyPrefixOrId(String keyPrefixOrId) {

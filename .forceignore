@@ -11,10 +11,14 @@ package.xml
 # LWC Jest
 **/__tests__/**
 
-AppSwitcher.appMenu
 package.xml
 **appMenu
 **appSwitcher
 **objectTranslations
 **profiles
 **settings
+
+force-app/main/default/approvalProcesses/KnowledgeArticle.KBWorkflow.approvalProcess-meta.xml
+force-app/main/default/approvalProcesses/KnowledgeArticleVersion.KBTranslationSubWorkflow.approvalProcess-meta.xml
+force-app/main/default/layouts/Knowledge__kav-Knowledge Layout.layout-meta.xml
+force-app/main/default/objects/Knowledge__kav

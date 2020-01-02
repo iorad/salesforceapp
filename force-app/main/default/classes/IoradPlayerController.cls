@@ -12,39 +12,41 @@ public with sharing class IoradPlayerController {
         }
     }
 
-    public IoradPlayerController(ApexPages.KnowledgeArticleVersionStandardController controller) {
-        SObject record = controller.getRecord();
-        String articleId = record.Id;
-        if (articleId != null) {
-            this.populateArticle(articleId);
-        }
-    }
-
     private void populateArticle(String id) {
+        List<String> availableFields = new List<String>();
+
         Schema.DescribeSObjectResult objectType = this.getObjectTypeByKeyPrefixOrId(id);
         if (objectType != null && objectType.getName().endsWith('__kav')) {
-            List<String> availableFields = new List<String>();
             availableFields.add('Id');
             availableFields.add('Summary');
 
-            Map<String, Schema.SObjectField> fields = objectType.fields.getMap();
-            for (Schema.SObjectField field : fields.values()) {
-                Schema.DescribeFieldResult detail = field.getDescribe();
-                if (detail.isCustom()) {
-                    availableFields.add(detail.getName());
-                }
-            }
+            this.populateArticle(id, objectType, availableFields);
+            return;
+        }
 
-            if (availableFields.size() > 0) {
-                String textFields = String.join(availableFields, ', ');
-                String query = 'SELECT ' + textFields + ' FROM ' + objectType.getSObjectType() + ' WHERE Id = :id LIMIT 1';
-                this.article = Database.query(query);
-                if (this.article != null) {
-                    for (String key : availableFields) {
-                        String textValue = (String) this.article.get(key);
-                        if (textValue != null && textValue != '') {
-                            this.player = this.getIoradPlayerLink(textValue);
-                        }
+        this.populateArticle(id, Iorad_Tutorial__c.SObjectType.getDescribe(), availableFields);
+    }
+
+    private void populateArticle(String id, Schema.DescribeSObjectResult objectType, List<String> availableFields) {
+        Map<String, Schema.SObjectField> fields = objectType.fields.getMap();
+        for (Schema.SObjectField field : fields.values()) {
+            Schema.DescribeFieldResult detail = field.getDescribe();
+            if (detail.isCustom()) {
+                availableFields.add(detail.getName());
+            }
+        }
+
+        if (availableFields.size() > 0) {
+            String textFields = String.join(availableFields, ', ');
+            String query = 'SELECT ' + textFields + ' FROM ' + objectType.getSObjectType() + ' WHERE Id = :id LIMIT 1';
+            this.article = Database.query(query);
+            if (this.article != null) {
+                for (String key : availableFields) {
+                    Object objValue = this.article.get(key);
+                    String textValue = objValue == null ? '' : objValue.toString();
+                    String link = this.getIoradPlayerLink(textValue);
+                    if (link != null && link != '') {
+                        this.player = link;
                     }
                 }
             }
@@ -56,7 +58,6 @@ public with sharing class IoradPlayerController {
     }
 
     private Schema.DescribeSObjectResult getObjectTypeByKeyPrefixOrId(String keyPrefixOrId) {
-
         Schema.DescribeSObjectResult result = null;
         String keyPrefix = keyPrefixOrId.substring(0, 3);
 
@@ -71,8 +72,7 @@ public with sharing class IoradPlayerController {
         return result;
     }
 
-    private String getIoradPlayerLink(String text)
-    {
+    private String getIoradPlayerLink(String text) {
         String result = null;
         List<String> playerLinks = new List<String>();
         playerLinks.add('http://dev.iorad.local/player');
@@ -95,8 +95,9 @@ public with sharing class IoradPlayerController {
         }
 
         XmlStreamReader reader = new XmlStreamReader('<div>' + String.join(tags, '') + '</div>');
-        boolean isSafeToGetNextXmlElement = true;
-        while(isSafeToGetNextXmlElement) {
+        while(reader.hasNext()) {
+            reader.next();
+
             if (reader.getEventType() == XmlTag.START_ELEMENT) {
                 if (reader.getLocalName() == 'A' || reader.getLocalName() == 'a') {
                     String link = reader.getAttributeValue(null, 'href');
@@ -108,13 +109,6 @@ public with sharing class IoradPlayerController {
                         }
                     }
                 }
-            }
-
-            if (reader.hasNext()) {
-                reader.next();
-            } else {
-                isSafeToGetNextXmlElement = false;
-                break;
             }
         }
 

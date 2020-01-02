@@ -18,11 +18,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
-        <field>Iorad_Tutorial__c.Id__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>true</editable>
         <field>Iorad_Tutorial__c.PublishedDate__c</field>
         <readable>true</readable>

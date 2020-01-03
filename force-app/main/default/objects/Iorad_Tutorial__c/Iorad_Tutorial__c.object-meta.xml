@@ -167,8 +167,8 @@
         <customTabListAdditionalFields>Summary__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UrlName__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Summary__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>PublishedDate__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>UrlName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>PublishedDate__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

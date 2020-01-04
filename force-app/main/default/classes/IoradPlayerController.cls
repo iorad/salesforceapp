@@ -13,27 +13,18 @@ public with sharing class IoradPlayerController {
     }
 
     private void populateArticle(String id) {
-        List<String> availableFields = new List<String>();
-
         Schema.DescribeSObjectResult objectType = this.getObjectTypeByKeyPrefixOrId(id);
-        if (objectType != null && objectType.getName().endsWith('__kav')) {
-            availableFields.add('Id');
-            availableFields.add('Summary');
-
-            this.populateArticle(id, objectType, availableFields);
-            return;
+        if (objectType != null && (objectType.getName().endsWith('__kav') || objectType.getName().endsWith('Iorad_Tutorial__c'))) {
+            this.populateArticle(id, objectType);
         }
-
-        this.populateArticle(id, Iorad_Tutorial__c.SObjectType.getDescribe(), availableFields);
     }
 
-    private void populateArticle(String id, Schema.DescribeSObjectResult objectType, List<String> availableFields) {
+    private void populateArticle(String id, Schema.DescribeSObjectResult objectType) {
+        List<String> availableFields = new List<String>();
         Map<String, Schema.SObjectField> fields = objectType.fields.getMap();
         for (Schema.SObjectField field : fields.values()) {
             Schema.DescribeFieldResult detail = field.getDescribe();
-            if (detail.isCustom()) {
-                availableFields.add(detail.getName());
-            }
+            availableFields.add(detail.getName());
         }
 
         if (availableFields.size() > 0) {

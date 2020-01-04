@@ -21,6 +21,9 @@
     </flexiPageRegions>
     <flexiPageRegions>
         <componentInstances>
+            <componentName>force:detailPanel</componentName>
+        </componentInstances>
+        <componentInstances>
             <componentInstanceProperties>
                 <name>height</name>
                 <value>750</value>
@@ -46,9 +49,6 @@
         <type>Region</type>
     </flexiPageRegions>
     <flexiPageRegions>
-        <componentInstances>
-            <componentName>force:detailPanel</componentName>
-        </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
                 <name>entityNames</name>

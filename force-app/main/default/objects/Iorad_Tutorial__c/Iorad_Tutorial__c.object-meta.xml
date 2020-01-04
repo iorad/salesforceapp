@@ -129,7 +129,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Iorad_Lightning_Page</content>
+        <content>Iorad_Tutorial_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -165,9 +165,12 @@
     <pluralLabel>iorad</pluralLabel>
     <searchLayouts>
         <customTabListAdditionalFields>Summary__c</customTabListAdditionalFields>
-        <customTabListAdditionalFields>UrlName__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>PublishedDate__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>Summary__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>UrlName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>PublishedDate__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>

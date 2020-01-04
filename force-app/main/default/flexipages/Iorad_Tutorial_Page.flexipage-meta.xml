@@ -63,7 +63,7 @@
         <name>sidebar</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>Iorad Lightning Page</masterLabel>
+    <masterLabel>Iorad Tutorial Page</masterLabel>
     <sobjectType>Iorad_Tutorial__c</sobjectType>
     <template>
         <name>flexipage:recordHomeTemplateDesktop</name>

@@ -1,0 +1,7 @@
+# this is a placeholder for dist package using command:
+# `sfdx force:source:convert --outputdir dist packagename iorad`
+# then deployed using command
+# `sfdx force:mdapi:deploy --deploydir dist/ -w 15 --targetusername=ioradapp_package`
+
+*
+!.gitignore

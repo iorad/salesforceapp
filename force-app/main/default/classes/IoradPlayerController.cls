@@ -34,7 +34,7 @@ public with sharing class IoradPlayerController {
             if (this.article != null) {
                 for (String key : availableFields) {
                     Object objValue = this.article.get(key);
-                    String textValue = objValue == null ? '' : objValue.toString();
+                    String textValue = objValue != null && objValue instanceof String ? objValue.toString() : '';
                     String link = this.getIoradPlayerLink(textValue);
                     if (link != null && link != '') {
                         this.player = link;
